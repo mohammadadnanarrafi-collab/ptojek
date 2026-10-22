@@ -1,117 +1,137 @@
 /* =========================================================
-   A.F.R — Logika Pemesanan Tiket
+   Tomat Merah: navigasi halaman, grafik SVG, dan tema
    ========================================================= */
+(function () {
+  'use strict';
 
-/* ---------- Helper ---------- */
-const $ = (id) => document.getElementById(id);
-const rupiah = (angka) => 'Rp ' + angka.toLocaleString('id-ID');
+  const $ = (id) => document.getElementById(id);
 
-/* ---------- Konfigurasi & State ---------- */
-const KURSI_TERISI = [1, 4, 6, 9, 10, 14, 17, 20, 23];
-const MAKS_KURSI = 4;
-const BARIS = 6;
-const KOLOM = ['A', 'B', '', 'C', 'D']; // '' = lorong
-let kursiDipilih = [];
+  /* ---------- 1. Navigasi antar halaman (berbasis hash) ---------- */
+  const pages = [...document.querySelectorAll('.page')];
+  const links = [...document.querySelectorAll('nav a')];
 
-/* ---------- Tanggal default (3 hari dari sekarang) ---------- */
-const tanggalDefault = new Date();
-tanggalDefault.setDate(tanggalDefault.getDate() + 3);
-$('tg').value = tanggalDefault.toISOString().slice(0, 10);
+  function showPage() {
+    let id = location.hash.slice(1) || 'beranda';
+    if (!pages.some((p) => p.id === id)) id = 'beranda';
 
-/* ---------- Denah kursi ---------- */
-function buatDenahKursi() {
-  const wadah = $('seats');
-
-  for (let baris = 1; baris <= BARIS; baris++) {
-    KOLOM.forEach((kolom, i) => {
-      // Lorong di tengah
-      if (!kolom) {
-        wadah.appendChild(document.createElement('span'));
-        return;
+    pages.forEach((p) => p.classList.toggle('on', p.id === id));
+    links.forEach((a) => {
+      if (a.getAttribute('href') === '#' + id) {
+        a.setAttribute('aria-current', 'page');
+      } else {
+        a.removeAttribute('aria-current');
       }
-
-      const nomor = (baris - 1) * 4 + (i > 2 ? i - 1 : i) + 1;
-      const label = baris + kolom;
-      const terisi = KURSI_TERISI.includes(nomor);
-
-      const tombol = document.createElement('button');
-      tombol.className = 's' + (terisi ? ' x' : '');
-      tombol.textContent = label;
-
-      if (!terisi) {
-        tombol.onclick = () => pilihKursi(label, tombol);
-      }
-      wadah.appendChild(tombol);
     });
-  }
-}
-
-function pilihKursi(label, tombol) {
-  const posisi = kursiDipilih.indexOf(label);
-
-  if (posisi > -1) {
-    kursiDipilih.splice(posisi, 1); // batalkan pilihan
-  } else if (kursiDipilih.length < MAKS_KURSI) {
-    kursiDipilih.push(label); // tambah pilihan
+    window.scrollTo(0, 0);
   }
 
-  tombol.classList.toggle('on', kursiDipilih.includes(label));
-  perbaruiRingkasan();
-}
+  addEventListener('hashchange', showPage);
+  showPage();
 
-/* ---------- Ringkasan harga ---------- */
-function perbaruiRingkasan() {
-  const harga = Number($('rt').value);
-  $('cnt').textContent = kursiDipilih.length + ' kursi';
-  $('tot').textContent = rupiah(kursiDipilih.length * harga);
-}
+  /* ---------- 2. Grafik tinggi tanaman (halaman Budidaya) ---------- */
+  function drawGrowthChart() {
+    // [hari setelah semai, tinggi dalam cm]
+    const data = [[0, 0], [14, 8], [30, 30], [45, 75], [60, 115], [75, 150], [90, 170]];
+    const MAX_DAY = 90;
+    const MAX_HEIGHT = 180;
 
-/* ---------- Barcode ---------- */
-function buatBarcode(kode) {
-  let x = 0;
-  let batang = '';
+    const x = (day) => 40 + (day / MAX_DAY) * 340;
+    const y = (cm) => 260 - (cm / MAX_HEIGHT) * 230;
 
-  for (const karakter of kode) {
-    const nilai = karakter.charCodeAt(0);
+    let grid = '';
+    let labels = '';
+    let dots = '';
 
-    for (let bit = 0; bit < 4; bit++) {
-      const lebar = ((nilai >> bit) & 1) + 1.5;
-      batang += `<rect x="${x}" y="0" width="${lebar}" height="46" fill="#0d0b09"/>`;
-      x += lebar + 2.5;
-    }
-    x += 2;
+    // Garis dan label sumbu Y
+    [0, 60, 120, 180].forEach((cm) => {
+      grid += `<path d="M40 ${y(cm)}H380"/>`;
+      labels += `<text x="6" y="${y(cm) + 4}">${cm}</text>`;
+    });
+
+    // Label sumbu X
+    [0, 30, 60, 90].forEach((day) => {
+      labels += `<text x="${x(day)}" y="278" text-anchor="middle">${day}</text>`;
+    });
+
+    // Titik data
+    data.forEach(([day, cm]) => {
+      dots += `<circle cx="${x(day)}" cy="${y(cm)}" r="5"/>`;
+    });
+
+    // Garis penghubung
+    const line = data
+      .map(([day, cm], i) => `${i ? 'L' : 'M'}${x(day)} ${y(cm)}`)
+      .join('');
+
+    $('gx').innerHTML = grid;
+    $('gt').innerHTML = labels;
+    $('gp').innerHTML = dots;
+    $('gl').setAttribute('d', line);
   }
-  return { batang, lebarTotal: x };
-}
 
-/* ---------- Proses pemesanan ---------- */
-function pesanTiket() {
-  const nama = $('nm').value.trim();
-  const rute = $('rt');
+  /* ---------- 3. Grafik batang nutrisi (halaman Nutrisi) ---------- */
+  function drawNutritionChart() {
+    // [nama, persen kebutuhan harian per 100 g]
+    const data = [
+      ['Vitamin C', 15],
+      ['Vitamin K', 7],
+      ['Kalium', 5],
+      ['Vitamin A', 5],
+      ['Folat', 4],
+      ['Serat', 4],
+    ];
+    const MAX_VALUE = 15;
+    const MAX_BAR_WIDTH = 230;
 
-  if (!kursiDipilih.length) return alert('Pilih minimal 1 kursi.');
-  if (!nama) return alert('Isi nama penumpang.');
+    let svg = '';
+    data.forEach(([name, value], i) => {
+      const top = 14 + i * 40;
+      const width = (value / MAX_VALUE) * MAX_BAR_WIDTH;
 
-  const kode = 'AFR' + Math.random().toString(36).slice(2, 8).toUpperCase();
-  const total = kursiDipilih.length * Number(rute.value);
-  const namaRute = rute.options[rute.selectedIndex].text;
+      svg += `<text x="0" y="${top + 18}" font-size="13" font-weight="600">${name}</text>`;
+      svg += `<rect x="100" y="${top}" width="${width}" height="26" rx="13" fill="var(--fg)"/>`;
+      svg += `<text x="${108 + width}" y="${top + 18}" font-size="13">${value}%</text>`;
+    });
 
-  $('td').innerHTML = `
-    <b>${kode}</b><br>
-    ${nama} · ${namaRute}<br>
-    ${$('tg').value} · Kursi ${kursiDipilih.join(', ')}<br>
-    Total ${rupiah(total)} via ${$('pay').value}`;
+    $('nb').innerHTML = svg;
+  }
 
-  const { batang, lebarTotal } = buatBarcode(kode);
-  $('bc').setAttribute('viewBox', `0 0 ${lebarTotal} 46`);
-  $('bc').innerHTML = batang;
+  /* ---------- 4. Tingkat kematangan (halaman Hama & panen) ---------- */
+  function drawRipeness() {
+    // [label, opacity tomat]; makin matang makin pekat
+    const stages = [
+      ['Hijau', 0.12],
+      ['Mulai merah', 0.4],
+      ['Hampir merah', 0.7],
+      ['Merah penuh', 1],
+    ];
 
-  const tiket = $('tk');
-  tiket.style.display = 'block';
-  tiket.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
+    let svg = '';
+    stages.forEach(([label, opacity], i) => {
+      const x = 8 + i * 88;
+      svg += `<use href="#tm" x="${x}" y="70" width="78" height="78" opacity="${opacity}"/>`;
+      svg += `<text x="${x + 39}" y="180" font-size="12" font-weight="600" text-anchor="middle">${label}</text>`;
+    });
 
-/* ---------- Inisialisasi ---------- */
-buatDenahKursi();
-$('rt').onchange = perbaruiRingkasan;
-$('go').onclick = pesanTiket;
+    // Panah waktu pematangan
+    svg += '<path d="M40 215H320" stroke="var(--fg)" stroke-width="3"/>';
+    svg += '<path d="M312 208l10 7-10 7" fill="none" stroke="var(--fg)" stroke-width="3"/>';
+    svg += '<text x="180" y="240" font-size="12" text-anchor="middle">Waktu pematangan</text>';
+
+    $('rp').innerHTML = svg;
+  }
+
+  drawGrowthChart();
+  drawNutritionChart();
+  drawRipeness();
+
+  /* ---------- 5. Tombol ganti tema ---------- */
+  const root = document.documentElement;
+
+  $('th').addEventListener('click', () => {
+    const isDark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = isDark ? 'light' : 'dark';
+  });
+})();
