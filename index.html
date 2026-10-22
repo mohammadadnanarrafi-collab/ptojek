@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Tomat Merah — Pengetahuan Lengkap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="tm" viewBox="0 0 100 100">
+          <path d="M50 18C22 14 6 36 8 60c2 22 22 34 42 34s40-12 42-34C94 36 78 14 50 18Z" fill="var(--fg)"/>
+          <path d="M24 40c4-8 11-12 18-13" stroke="var(--bg)" stroke-width="5" stroke-linecap="round" fill="none" opacity=".55"/>
+          <path d="M50 22l-6-12 10 6 8-10-2 14 14-4-10 10 8 8-14-2z" fill="var(--bg)" stroke="var(--fg)" stroke-width="2.5" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="lf" viewBox="0 0 24 24">
+          <path d="M3 21C3 9 11 3 21 3c0 10-6 18-18 18Zm0 0L15 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </symbol>
+        <pattern id="lp" width="60" height="36" patternUnits="userSpaceOnUse">
+          <path d="M0 18h60" stroke="var(--fg)" stroke-width="2"/>
+          <path d="M30 18c-4-10 0-16 8-17 1 9-2 15-8 17Zm0 0c-4 8-10 12-18 11 1-8 8-12 18-11Z" fill="var(--fg)"/>
+        </pattern>
+      </defs>
+    </svg>
+    <header class="top">
+      <div class="bar">
+        <a class="brand" href="#beranda">
+          <svg width="30" height="30">
+            <use href="#tm"/>
+          </svg>
+          Tomat Merah
+        </a>
+        <nav aria-label="Menu utama">
+          <a href="#beranda">Beranda</a>
+          <a href="#anatomi">Anatomi</a>
+          <a href="#budidaya">Budidaya</a>
+          <a href="#nutrisi">Nutrisi</a>
+          <a href="#perawatan">Hama &amp; panen</a>
+        </nav>
+        <button class="th" id="th" aria-label="Ganti tema">Tema</button>
+      </div>
+    </header>
+    <main>
+
+      <!-- BERANDA -->
+      <section class="page" id="beranda" aria-labelledby="h-b">
+        <div class="hero">
+          <div>
+            <h1 id="h-b">Tomat merah, buah yang kita sebut sayur.</h1>
+            <p class="lead">
+              Kenali satu tanaman dari akar hingga meja makan: bentuk tubuhnya, cara
+              menanamnya, isi gizinya, dan cara merawatnya.
+            </p>
+            <p class="sci">Solanum lycopersicum, keluarga terung-terungan (Solanaceae)</p>
+          </div>
+          <div class="fig draw" aria-hidden="true">
+            <svg viewBox="0 0 320 320">
+              <circle cx="160" cy="160" r="150" fill="none" stroke="var(--fg)" stroke-width="2" stroke-dasharray="3 9"/>
+              <path class="v" d="M40 280C70 230 40 200 90 170S120 90 160 70" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linecap="round"/>
+              <path class="v" d="M290 270C250 230 280 190 230 160S210 80 168 66" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linecap="round"/>
+              <g color="var(--fg)">
+                <use href="#lf" x="52" y="196" width="34" height="34"/>
+                <use href="#lf" x="240" y="200" width="34" height="34" transform="translate(514 0) scale(-1 1)"/>
+                <use href="#lf" x="96" y="108" width="28" height="28"/>
+                <use href="#lf" x="204" y="106" width="28" height="28" transform="translate(436 0) scale(-1 1)"/>
+              </g>
+              <use href="#tm" x="70" y="110" width="180" height="180"/>
+            </svg>
+          </div>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>94%</b>bagian buahnya adalah air</div>
+          <div class="fact"><b>18 kkal</b>energi per 100 gram tomat segar</div>
+          <div class="fact"><b>±75 hari</b>dari pindah tanam hingga panen pertama</div>
+          <div class="fact"><b>Andes</b>asal tanaman, Amerika Selatan bagian barat</div>
+        </div>
+        <h2>Jelajahi</h2>
+        <div class="cards">
+          <a class="card" href="#anatomi">
+            <svg>
+              <use href="#tm"/>
+            </svg>
+            <h3>Anatomi</h3>
+            Lihat isi tomat dari kulit sampai biji.
+          </a>
+          <a class="card" href="#budidaya">
+            <svg>
+              <use href="#lf"/>
+            </svg>
+            <h3>Budidaya</h3>
+            Langkah menanam dan grafik pertumbuhan.
+          </a>
+          <a class="card" href="#nutrisi">
+            <svg>
+              <use href="#tm"/>
+            </svg>
+            <h3>Nutrisi</h3>
+            Vitamin, mineral, dan likopen.
+          </a>
+          <a class="card" href="#perawatan">
+            <svg>
+              <use href="#lf"/>
+            </svg>
+            <h3>Hama &amp; panen</h3>
+            Masalah umum dan cara mengatasinya.
+          </a>
+        </div>
+        <h2 class="spaced">Buah atau sayur?</h2>
+        <p>
+          Menurut botani, tomat adalah buah jenis buni (berry) karena berkembang dari
+          bunga dan menyimpan biji di dalamnya. Di dapur, rasanya yang gurih-asam
+          membuatnya diperlakukan sebagai sayur. Keduanya benar, tergantung siapa yang
+          bertanya.
+        </p>
+        <svg class="leafline" aria-hidden="true">
+          <rect width="100%" height="36" fill="url(#lp)"/>
+        </svg>
+      </section>
+
+      <!-- ANATOMI -->
+      <section class="page" id="anatomi" aria-labelledby="h-a">
+        <h1 id="h-a" class="page-title">Anatomi buah tomat</h1>
+        <p class="lead">
+          Potong tomat melintang dan Anda akan melihat ruang-ruang berisi biji yang
+          tertanam dalam gel.
+        </p>
+        <div class="two">
+          <div class="fig">
+            <svg viewBox="0 0 380 340" role="img" aria-label="Penampang melintang tomat dengan label bagian-bagiannya">
+              <circle cx="190" cy="170" r="132" fill="var(--fg)"/>
+              <circle cx="190" cy="170" r="118" fill="var(--bg)"/>
+              <circle cx="190" cy="170" r="104" fill="var(--tint)" stroke="var(--fg)" stroke-width="2"/>
+              <g fill="var(--bg)" stroke="var(--fg)" stroke-width="2">
+                <path d="M190 160c-8-40-50-52-68-26-12 20 6 40 30 42 20 2 34-4 38-16Z"/>
+                <path d="M200 160c8-40 50-52 68-26 12 20-6 40-30 42-20 2-34-4-38-16Z"/>
+                <path d="M190 182c-8 40-50 52-68 26-12-20 6-40 30-42 20-2 34 4 38 16Z"/>
+                <path d="M200 182c8 40 50 52 68 26 12-20-6-40-30-42-20-2-34 4-38 16Z"/>
+              </g>
+              <circle cx="195" cy="171" r="14" fill="var(--fg)"/>
+              <g fill="var(--fg)">
+                <ellipse cx="150" cy="134" rx="5" ry="3" transform="rotate(30 150 134)"/>
+                <ellipse cx="170" cy="120" rx="5" ry="3"/>
+                <ellipse cx="135" cy="150" rx="5" ry="3" transform="rotate(-20 135 150)"/>
+                <ellipse cx="240" cy="134" rx="5" ry="3" transform="rotate(-30 240 134)"/>
+                <ellipse cx="222" cy="120" rx="5" ry="3"/>
+                <ellipse cx="252" cy="152" rx="5" ry="3"/>
+                <ellipse cx="150" cy="206" rx="5" ry="3" transform="rotate(-30 150 206)"/>
+                <ellipse cx="170" cy="222" rx="5" ry="3"/>
+                <ellipse cx="240" cy="206" rx="5" ry="3" transform="rotate(30 240 206)"/>
+                <ellipse cx="222" cy="222" rx="5" ry="3"/>
+              </g>
+              <g stroke="var(--fg)" stroke-width="1.8" fill="none">
+                <path d="M312 70L262 112"/>
+                <path d="M60 40L120 136"/>
+                <path d="M60 300L160 214"/>
+                <path d="M330 300L240 216"/>
+                <path d="M190 8v34"/>
+              </g>
+              <g font-size="14" font-weight="600">
+                <text x="372" y="64" text-anchor="end">Daging buah</text>
+                <text x="8" y="32">Biji</text>
+                <text x="8" y="318">Ruang biji (lokul)</text>
+                <text x="236" y="322">Inti (plasenta)</text>
+                <text x="192" y="22" dx="10">Kulit</text>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3>Bagian utama</h3>
+            <p>
+              <b>Kulit</b> melindungi buah dan menyimpan likopen, pigmen yang memberi
+              warna merah. <b>Daging buah</b> adalah dinding tebal yang kita makan.
+              <b>Ruang biji</b> biasanya dua sampai empat, berisi biji berselaput gel.
+              <b>Inti</b> menahan semua ruang di tengah.
+            </p>
+            <h3>Di luar buah</h3>
+            <p>
+              Kelopak hijau berbentuk bintang melekat di pangkal buah. Rambut halus
+              pada batang dan daun mengeluarkan aroma khas tomat saat disentuh.
+            </p>
+            <span class="pill">Tipe buni</span>
+            <span class="pill">Biji 100–300 per buah</span>
+            <span class="pill">Warna: likopen</span>
+          </div>
+        </div>
+        <svg class="leafline" aria-hidden="true">
+          <rect width="100%" height="36" fill="url(#lp)"/>
+        </svg>
+      </section>
+
+      <!-- BUDIDAYA -->
+      <section class="page" id="budidaya" aria-labelledby="h-c">
+        <h1 id="h-c" class="page-title">Cara menanam tomat</h1>
+        <p class="lead">
+          Tomat tumbuh baik dengan sinar matahari 6–8 jam sehari, suhu 20–27 °C, dan tanah
+          gembur dengan pH 6,0–6,8.
+        </p>
+        <div class="two start">
+          <ol class="steps">
+            <li>
+              <div>
+                <b>Semai biji.</b> Tanam 0,5 cm dalam media lembap. Bibit muncul
+                dalam 5–10 hari.
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Pindah tanam.</b> Setelah 3–4 minggu dan punya 4–5 daun sejati,
+                tanam dengan jarak 50–60 cm.
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Pasang ajir.</b> Ikat batang longgar pada tiang agar buah tidak
+                menyentuh tanah.
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Siram teratur.</b> Beri air di pangkal batang, bukan di daun,
+                kira-kira sekali sehari.
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Pupuk dan pangkas.</b> Beri pupuk kaya kalium saat berbunga.
+                Buang tunas air di sela batang dan cabang.
+              </div>
+            </li>
+          </ol>
+          <div class="fig">
+            <svg viewBox="0 0 400 300" role="img" aria-label="Grafik perkiraan tinggi tanaman tomat dari hari ke-0 sampai ke-90">
+              <g id="gx" stroke="var(--line)" stroke-width="1"></g>
+              <path id="gl" fill="none" stroke="var(--fg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <g id="gp" fill="var(--fg)"></g>
+              <g id="gt" font-size="11"></g>
+              <text x="8" y="16" font-size="12" font-weight="600">Tinggi tanaman (cm)</text>
+              <text x="200" y="294" font-size="12" font-weight="600" text-anchor="middle">Hari setelah semai</text>
+            </svg>
+            <p class="note">
+              Perkiraan untuk tomat tipe merambat. Nilai nyata bergantung pada cuaca
+              dan perawatan.
+            </p>
+          </div>
+        </div>
+        <h3 class="spaced-sm">Fase pertumbuhan</h3>
+        <span class="pill">Semai 0–21 hari</span>
+        <span class="pill">Vegetatif 21–40</span>
+        <span class="pill">Berbunga 40–55</span>
+        <span class="pill">Berbuah 55–75</span>
+        <span class="pill">Panen 75–90+</span>
+        <svg class="leafline" aria-hidden="true">
+          <rect width="100%" height="36" fill="url(#lp)"/>
+        </svg>
+      </section>
+
+      <!-- NUTRISI -->
+      <section class="page" id="nutrisi" aria-labelledby="h-n">
+        <h1 id="h-n" class="page-title">Isi gizi tomat</h1>
+        <p class="lead">
+          Kalorinya rendah, tetapi tomat membawa vitamin C, kalium, dan likopen dalam
+          jumlah yang berarti.
+        </p>
+        <div class="two start">
+          <div class="fig">
+            <svg viewBox="0 0 400 270" role="img" aria-label="Grafik batang persen kebutuhan harian per 100 gram tomat">
+              <g id="nb"></g>
+            </svg>
+            <p class="note">
+              Perkiraan persen kebutuhan harian orang dewasa dalam 100 g tomat mentah.
+            </p>
+          </div>
+          <div>
+            <h3>Per 100 gram</h3>
+            <p>
+              Air 94,5 g, karbohidrat 3,9 g (gula 2,6 g), serat 1,2 g, protein 0,9 g,
+              lemak 0,2 g.
+            </p>
+            <h3>Likopen</h3>
+            <p>
+              Pigmen antioksidan ini larut dalam lemak. Memasak tomat dengan sedikit
+              minyak membantu tubuh menyerapnya lebih baik, jadi saus tomat tetap
+              bergizi.
+            </p>
+            <details>
+              <summary>Apakah tomat baik untuk semua orang?</summary>
+              <p>
+                Sebagian orang sensitif terhadap asam tomat, misalnya penderita
+                refluks lambung. Jika ragu, tanyakan ke tenaga kesehatan.
+              </p>
+            </details>
+          </div>
+        </div>
+        <svg class="leafline" aria-hidden="true">
+          <rect width="100%" height="36" fill="url(#lp)"/>
+        </svg>
+      </section>
+
+      <!-- PERAWATAN -->
+      <section class="page" id="perawatan" aria-labelledby="h-p">
+        <h1 id="h-p" class="page-title">Hama, penyakit, dan panen</h1>
+        <p class="lead">Buka tiap masalah untuk melihat penyebab dan cara menanganinya.</p>
+        <div class="two start">
+          <div>
+            <details>
+              <summary>Ujung buah menghitam dan cekung</summary>
+              <p>
+                Penyebabnya kekurangan kalsium di buah, biasanya karena penyiraman
+                tidak teratur. Siram konsisten dan jaga kelembapan tanah dengan
+                mulsa.
+              </p>
+            </details>
+            <details>
+              <summary>Daun menguning dari bawah</summary>
+              <p>
+                Bisa tanda kurang nitrogen atau tanah terlalu basah. Periksa
+                drainase, lalu beri pupuk seimbang secukupnya.
+              </p>
+            </details>
+            <details>
+              <summary>Tanaman layu mendadak</summary>
+              <p>
+                Layu bakteri menyerang pembuluh batang dan tidak bisa disembuhkan.
+                Cabut tanaman sakit, jangan menanam tomat atau cabai di lahan yang
+                sama selama beberapa musim.
+              </p>
+            </details>
+            <details>
+              <summary>Lubang pada buah</summary>
+              <p>
+                Ulat buah memakan daging buah. Petik dan buang buah terserang, lalu
+                periksa daun tiap pagi.
+              </p>
+            </details>
+            <details>
+              <summary>Kutu kebul di bawah daun</summary>
+              <p>
+                Serangga putih kecil yang menularkan virus. Semprot air sabun ringan
+                atau pasang perangkap kuning.
+              </p>
+            </details>
+            <details>
+              <summary>Buah retak</summary>
+              <p>
+                Hujan deras setelah musim kering membuat buah menyerap air terlalu
+                cepat. Siram merata agar kadar air tanah stabil.
+              </p>
+            </details>
+          </div>
+          <div class="fig">
+            <svg viewBox="0 0 360 250" role="img" aria-label="Tingkat kematangan tomat dari hijau sampai merah">
+              <g id="rp"></g>
+            </svg>
+            <p class="note">
+              <b>Kapan panen?</b> Petik saat sekitar 80% kulit sudah berwarna merah,
+              lalu biarkan matang di suhu ruang. Hindari kulkas untuk tomat yang belum
+              matang karena rasanya menurun.
+            </p>
+          </div>
+        </div>
+        <svg class="leafline" aria-hidden="true">
+          <rect width="100%" height="36" fill="url(#lp)"/>
+        </svg>
+      </section>
+    </main>
+    <footer>
+      Halaman pengetahuan tentang satu jenis tomat: tomat merah (Solanum lycopersicum).
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
